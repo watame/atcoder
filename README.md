@@ -1,2 +1,3 @@
-# atcoder
-atcoderの挑戦ログ
+# 概要
+[AtCoder](https://atcoder.jp/?lang=ja)の挑戦ログ
+提出結果は各コンテストからしか参照できないので、ここに残すことで自身でも参照可能にする

@@ -1,4 +1,5 @@
 # 033 - Not Too Bright（★2）
+# 解説：https://twitter.com/e869120/status/1390436977808351234?s=20&t=GP8LPvJhd9dmR1erO78AEg
 height, width = map(int, input().split(" "))
 
 if height < 2 or width < 2:

@@ -1,8 +1,5 @@
 # A - Duplex Printing
 n = int(input())
 
-duplex_print_num = n // 2
-if n % 2 == 0:
-    print(duplex_print_num)
-else:
-    print(duplex_print_num + 1)
+# 奇数の時にも印刷する必要があるので、n+1することで常に偶数にして'/2'で正しい枚数が出力できるようにする
+print((n + 1) // 2)

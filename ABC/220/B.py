@@ -3,7 +3,7 @@ base = int(input())
 number_one, number_two = map(int, input().split())
 
 
-# 特定の基数,数値を10進数の数値にに変換する
+# 特定の基数,数値を10進数の数値に変換する
 def convert_decimal(base, number):
     result = 0
     for c, n in enumerate(str(number)[::-1]):

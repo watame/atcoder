@@ -1,32 +1,33 @@
-comic_count = int(input())
-comics = sorted(map(int, input().split()))
+# @see https://atcoder.jp/contests/abc271/editorial/4937
+# 本の数
+N = int(input())
+# 持っている巻の集合（ユニーク）
+# -> 重複した巻を全て売却した状態
+A = set(map(int, input().split()))
 
-# 余っているコミック数をカウントする
-rest_comic_count = 0
-comic_set = {comics[0]}
+l = 0
+r = N + 1
+# 探索範囲の最小と最大が隣り合わない限りループを続ける
+while r - l > 1:
+    # 2分木探索の範囲を決める
+    # 例：N=6
+    #    m = (0 + 6 + 1) // 2
+    #    m = 3
+    m = (l + r) // 2
+    # m巻までの集合と、入力した集合の積集合の長さを取る
+    # つまり、m巻に至るまで本の数がどれだけ足りないかを求める
+    # 例：m=3, A={1,2,4,6,7,271}
+    #    {1,2,3} と {1,2,4,6,7,271} の積集合 {1,2} の長さ = 2 を代入する
+    c = len(set(range(1, m + 1)) & A)
+    # m巻までに持っている本の数 + (持っている本の総数 - m巻までに持っている本の数) // 本の売却単位(2冊) が m巻以上になるか？
+    # 例：m=3, c=2, N=6
+    #    2 + (6 - 2) // 2 >= 3
+    #    4 >= 3 なので True となる
+    if c + (N - c) // 2 >= m:
+        # lに読み進んだ巻数を代入する
+        l = m
+    else:
+        # m巻まで辿り着けないのであれば、探索する範囲をm巻までの間に狭める
+        r = m
 
-# 1巻がなければ0を表示する
-if 1 not in comic_set:
-    print(0)
-    exit()
-
-for idx, c in enumerate(comics[1:]):
-    if c in comic_set:
-        rest_comic_count += 1
-        continue
-
-    comic_set.add(c)
-print(comic_set)
-
-next_comic = comics[0]
-comic_list = sorted(list(comic_set))[1 : comic_count - 1]
-limit = comic_count - 1
-for idx, c in enumerate(comic_list):
-    print(idx, c)
-    next_comic += 1
-
-print(sorted(list(comic_set)))
-
-
-print(rest_comic_count)
-# 2冊ずつ交換する
+print(l)

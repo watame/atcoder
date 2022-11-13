@@ -1,14 +1,17 @@
+# 1種類あたりの食品の数
 food_count = int(input())
-foods = [0] + list(map(int, input().split()))
-foods_set = set(foods[1::])
-for i in range(food_count):
-    # 最小値と最大値を削除する
-    foods_set.remove(min(foods_set))
-    foods_set.remove(max(foods_set))
-# インデックスを取得
-res = set()
-for f in foods_set:
-    res.add(foods.index(f))
-# 小さい順に表示
-for r in sorted(res):
-    print(r)
+
+# インデックスを表示できるよう、辞書型で情報を保持
+foods = {}
+for i, f in enumerate(map(int, input().split())):
+    # インデックスを1オリジンに変換
+    foods[f] = i + 1
+
+# 辞書のキーで配列をソート（ソート後はタプルの配列になる）
+sort_foods = sorted(foods.items())
+# lambdaを用いて、タプルの各要素の1インデックスの値を元にソートする
+# 食品は「food_count*3」の数だけあるので、ソートしたリストの中間だけ取得する
+# -> ましゅまろの範囲とかつおぶしの範囲を除いた、中間のところだけを表示する対象とする
+for i in sorted(sort_foods[food_count:-food_count], key=lambda i: i[1]):
+    # 出力するのはインデックスだけ
+    print(i[1])

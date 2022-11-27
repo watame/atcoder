@@ -13,7 +13,7 @@ close_temp_dist = abs(calc_avg_temp(temperature, heights[0]) - average_temperatu
 close_idx = 0
 for idx in range(1, place_count):
     temp_dist = abs(calc_avg_temp(temperature, heights[idx]) - average_temperature)
-    # より近い温度のが見つかった場合は値を更新
+    # より近い温度が見つかった場合は値を更新
     if temp_dist < close_temp_dist:
         close_temp_dist = temp_dist
         close_idx = idx
